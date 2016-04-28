@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10102" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10080"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="QRQ" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,39 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goposition" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKM-fs-kz2">
+                                <rect key="frame" x="0.0" y="579" width="600" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="opa-Cm-dzp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="MZb-t5-DgH">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="580"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="MZb-t5-DgH" secondAttribute="trailing" id="HMA-52-XsZ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="mKM-fs-kz2" secondAttribute="bottom" id="Hb9-5c-evI"/>
+                            <constraint firstItem="mKM-fs-kz2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="L3a-i5-OuK"/>
+                            <constraint firstAttribute="trailing" secondItem="mKM-fs-kz2" secondAttribute="trailing" id="e9n-Po-aHw"/>
+                            <constraint firstAttribute="bottom" secondItem="MZb-t5-DgH" secondAttribute="bottom" constant="20" symbolic="YES" id="i3o-7i-ZYI"/>
+                            <constraint firstItem="MZb-t5-DgH" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="yK3-bu-qvX"/>
+                            <constraint firstItem="MZb-t5-DgH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ypQ-3v-O81"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="Geo_label" destination="mKM-fs-kz2" id="tEB-RE-1Z2"/>
+                        <outlet property="mapView" destination="MZb-t5-DgH" id="2Ob-rw-WHH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="565" y="418"/>
         </scene>
     </scenes>
 </document>
