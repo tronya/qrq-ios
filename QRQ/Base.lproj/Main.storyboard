@@ -42,8 +42,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="Geo_label" destination="mKM-fs-kz2" id="tEB-RE-1Z2"/>
-                        <outlet property="mapView" destination="MZb-t5-DgH" id="2Ob-rw-WHH"/>
+                        <outlet property="Geo_label" destination="mKM-fs-kz2" id="w7h-A3-5ej"/>
+                        <outlet property="mapView" destination="MZb-t5-DgH" id="aKy-M8-qHt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
