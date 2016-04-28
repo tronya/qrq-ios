@@ -28,6 +28,49 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
         
+
+        
+
+        let requestURL: NSURL = NSURL(string: "http://yourday.esy.es/quest.json")!
+        let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: requestURL)
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(urlRequest) {
+            (data, response, error) -> Void in
+            
+            let httpResponse = response as! NSHTTPURLResponse
+            let statusCode = httpResponse.statusCode
+            
+            if (statusCode == 200) {
+                
+                do{
+                    
+                    let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
+                    
+                    if let quest_points = json["quest_poi"] as? [[String: AnyObject]] {
+                       
+                        for q_poi in quest_points {
+                            
+                            if let name = q_poi["name"] as? String {
+                                print(name)
+                            }
+                            if let poi = q_poi["location"] as? [[String: AnyObject]]{
+                                print(poi)
+                            }
+                        }
+                        
+                    }
+                    
+                }catch {
+                    print("Error with Json: \(error)")
+                    
+                }
+                
+            }
+            
+        }
+        
+        task.resume()
+        
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
@@ -45,6 +88,12 @@ class ViewController: UIViewController,CLLocationManagerDelegate {
             locationManager.startMonitoringForRegion(dod_3)
         }
     }
+    
+    
+
+
+
+
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
         print("locations = \(locValue.latitude) \(locValue.longitude)")
