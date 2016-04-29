@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10080"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,33 +18,103 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ak-rg-6TL">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="161"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="8Dv-Ca-Qbi">
+                                        <rect key="frame" x="8" y="8" width="576" height="137"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="poi_count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LdC-6O-IvY">
+                                                <rect key="frame" x="0.0" y="0.0" width="576" height="46"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PPY-tL-12r">
+                                                <rect key="frame" x="0.0" y="46" width="576" height="45"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="altittude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Foq-xV-41v">
+                                                <rect key="frame" x="0.0" y="91" width="576" height="46"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailingMargin" secondItem="8Dv-Ca-Qbi" secondAttribute="trailing" constant="8" id="5Vh-1U-7Ou"/>
+                                    <constraint firstItem="8Dv-Ca-Qbi" firstAttribute="top" secondItem="1ak-rg-6TL" secondAttribute="top" constant="8" id="Mwz-Gp-w5C"/>
+                                    <constraint firstItem="8Dv-Ca-Qbi" firstAttribute="leading" secondItem="1ak-rg-6TL" secondAttribute="leading" constant="8" id="dfh-6G-CPE"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="8Dv-Ca-Qbi" secondAttribute="bottom" constant="8" id="gyb-0Y-3Zs"/>
+                                </constraints>
+                            </view>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="MZb-t5-DgH">
+                                <rect key="frame" x="0.0" y="161" width="600" height="419"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="419" id="Sfd-kT-LKL"/>
+                                </constraints>
+                            </mapView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goposition" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKM-fs-kz2">
                                 <rect key="frame" x="0.0" y="579" width="600" height="21"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="5Ad-ot-4EC"/>
                                     <constraint firstAttribute="height" constant="21" id="opa-Cm-dzp"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="opa-Cm-dzp"/>
+                                    </mask>
+                                </variation>
                             </label>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="MZb-t5-DgH">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="580"/>
-                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="MZb-t5-DgH" secondAttribute="trailing" id="HMA-52-XsZ"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="mKM-fs-kz2" secondAttribute="bottom" id="Hb9-5c-evI"/>
+                            <constraint firstAttribute="trailing" secondItem="mKM-fs-kz2" secondAttribute="trailing" id="ICM-pC-JCf"/>
                             <constraint firstItem="mKM-fs-kz2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="L3a-i5-OuK"/>
+                            <constraint firstItem="1ak-rg-6TL" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="L5Q-t8-yX1"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="mKM-fs-kz2" secondAttribute="bottom" id="ZKU-tN-XSm"/>
+                            <constraint firstItem="MZb-t5-DgH" firstAttribute="top" secondItem="1ak-rg-6TL" secondAttribute="bottom" id="aVX-xi-45k"/>
                             <constraint firstAttribute="trailing" secondItem="mKM-fs-kz2" secondAttribute="trailing" id="e9n-Po-aHw"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="MZb-t5-DgH" secondAttribute="bottom" id="gF3-Hc-GrH"/>
                             <constraint firstAttribute="bottom" secondItem="MZb-t5-DgH" secondAttribute="bottom" constant="20" symbolic="YES" id="i3o-7i-ZYI"/>
+                            <constraint firstAttribute="trailing" secondItem="1ak-rg-6TL" secondAttribute="trailing" id="lsA-qR-Uuo"/>
+                            <constraint firstItem="1ak-rg-6TL" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="meI-ol-M8C"/>
+                            <constraint firstItem="mKM-fs-kz2" firstAttribute="top" secondItem="1ak-rg-6TL" secondAttribute="bottom" id="n1Z-i9-UoW"/>
+                            <constraint firstAttribute="trailing" secondItem="MZb-t5-DgH" secondAttribute="trailing" id="oAd-aU-X4d"/>
+                            <constraint firstAttribute="bottom" secondItem="MZb-t5-DgH" secondAttribute="bottom" constant="20" symbolic="YES" id="tT0-pa-giK"/>
+                            <constraint firstItem="MZb-t5-DgH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ult-Cc-9Bf"/>
+                            <constraint firstItem="mKM-fs-kz2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vaa-Rz-VVv"/>
+                            <constraint firstItem="MZb-t5-DgH" firstAttribute="top" secondItem="1ak-rg-6TL" secondAttribute="bottom" id="wSw-Oq-j1x"/>
                             <constraint firstItem="MZb-t5-DgH" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="yK3-bu-qvX"/>
                             <constraint firstItem="MZb-t5-DgH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ypQ-3v-O81"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="aVX-xi-45k"/>
+                                <exclude reference="i3o-7i-ZYI"/>
+                                <exclude reference="yK3-bu-qvX"/>
+                                <exclude reference="n1Z-i9-UoW"/>
+                                <exclude reference="Hb9-5c-evI"/>
+                                <exclude reference="gF3-Hc-GrH"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="Geo_label" destination="mKM-fs-kz2" id="w7h-A3-5ej"/>
+                        <outlet property="altitude" destination="Foq-xV-41v" id="P1J-ub-w8R"/>
                         <outlet property="mapView" destination="MZb-t5-DgH" id="aKy-M8-qHt"/>
+                        <outlet property="poi_count" destination="LdC-6O-IvY" id="G4O-za-LqF"/>
+                        <outlet property="speed" destination="PPY-tL-12r" id="Gya-oa-zsE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
