@@ -14,6 +14,10 @@
 		1626B6C91CD0E47B00E53DB2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1626B6C71CD0E47B00E53DB2 /* LaunchScreen.storyboard */; };
 		1626B6D31CD0E59600E53DB2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1626B6D21CD0E59600E53DB2 /* CoreLocation.framework */; };
 		164EB20B1CD200EA003E8660 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 164EB20A1CD200EA003E8660 /* MapKit.framework */; };
+		16581B221CDC856F00AE4FF4 /* QuestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16581B211CDC856F00AE4FF4 /* QuestTableViewCell.swift */; };
+		166017FE1CDB70110091CE59 /* UIImageView+AFNetworking copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166017FD1CDB70110091CE59 /* UIImageView+AFNetworking copy.swift */; };
+		167817821CDB42BC004C3193 /* Main_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167817811CDB42BC004C3193 /* Main_ViewController.swift */; };
+		167817851CDB48D3004C3193 /* Quests_elem_scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167817841CDB48D3004C3193 /* Quests_elem_scope.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		1626B6CA1CD0E47B00E53DB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1626B6D21CD0E59600E53DB2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		164EB20A1CD200EA003E8660 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		16581B211CDC856F00AE4FF4 /* QuestTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestTableViewCell.swift; sourceTree = "<group>"; };
+		166017FD1CDB70110091CE59 /* UIImageView+AFNetworking copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+AFNetworking copy.swift"; sourceTree = "<group>"; };
+		167817811CDB42BC004C3193 /* Main_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Main_ViewController.swift; path = MainView/Main_ViewController.swift; sourceTree = "<group>"; };
+		167817841CDB48D3004C3193 /* Quests_elem_scope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quests_elem_scope.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,14 +70,42 @@
 		1626B6BD1CD0E47B00E53DB2 /* QRQ */ = {
 			isa = PBXGroup;
 			children = (
+				166017FD1CDB70110091CE59 /* UIImageView+AFNetworking copy.swift */,
 				1626B6BE1CD0E47B00E53DB2 /* AppDelegate.swift */,
 				1626B6C01CD0E47B00E53DB2 /* ViewController.swift */,
 				1626B6C21CD0E47B00E53DB2 /* Main.storyboard */,
+				16581B231CDC85E000AE4FF4 /* Cell */,
+				167817831CDB435C004C3193 /* Main */,
 				1626B6C51CD0E47B00E53DB2 /* Assets.xcassets */,
 				1626B6C71CD0E47B00E53DB2 /* LaunchScreen.storyboard */,
 				1626B6CA1CD0E47B00E53DB2 /* Info.plist */,
+				167817861CDB48D7004C3193 /* Scopes */,
 			);
 			path = QRQ;
+			sourceTree = "<group>";
+		};
+		16581B231CDC85E000AE4FF4 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				16581B211CDC856F00AE4FF4 /* QuestTableViewCell.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		167817831CDB435C004C3193 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				167817811CDB42BC004C3193 /* Main_ViewController.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		167817861CDB48D7004C3193 /* Scopes */ = {
+			isa = PBXGroup;
+			children = (
+				167817841CDB48D3004C3193 /* Quests_elem_scope.swift */,
+			);
+			name = Scopes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,7 +189,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1626B6C11CD0E47B00E53DB2 /* ViewController.swift in Sources */,
+				166017FE1CDB70110091CE59 /* UIImageView+AFNetworking copy.swift in Sources */,
+				16581B221CDC856F00AE4FF4 /* QuestTableViewCell.swift in Sources */,
 				1626B6BF1CD0E47B00E53DB2 /* AppDelegate.swift in Sources */,
+				167817851CDB48D3004C3193 /* Quests_elem_scope.swift in Sources */,
+				167817821CDB42BC004C3193 /* Main_ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

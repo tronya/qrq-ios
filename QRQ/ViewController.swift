@@ -63,6 +63,14 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
                         
                         let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
                         
+                        
+                        /*
+                            if let post = json["post"] as? [[String: AnyObject]] {
+                                print("post",post)
+                            }
+                        */
+                        
+                        
                         if let quest_points = json["quest_poi"] as? [[String: AnyObject]] {
                             
                             self.poi_count.text = String(quest_points.count)
