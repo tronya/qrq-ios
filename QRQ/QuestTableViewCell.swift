@@ -10,7 +10,6 @@ import UIKit
 
 class QuestTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var short_quest_bg_image: UIImageView!
     @IBOutlet weak var short_quest_image: UIImageView!
     
     @IBOutlet weak var short_quest_title: UILabel!

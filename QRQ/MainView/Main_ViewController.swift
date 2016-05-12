@@ -84,7 +84,6 @@ class Main_ViewController: UIViewController,UITableViewDataSource, UITableViewDe
         
         cell.short_quest_count_poi?.text = String("points \(quest_el_posts[indexPath.row].quest_points!.count)")
         cell.short_quest_image?.setImageWithUrl(NSURL(string: (self.quest_el_posts[indexPath.row].quest_photo)!)!,placeHolderImage: UIImage(named:"placeholder"))
-        cell.short_quest_bg_image?.setImageWithUrl(NSURL(string: (self.quest_el_posts[indexPath.row].quest_photo)!)!,placeHolderImage: UIImage(named:"placeholder"))
         return cell
     }
     
@@ -99,6 +98,8 @@ class Main_ViewController: UIViewController,UITableViewDataSource, UITableViewDe
             self.performSegueWithIdentifier("quest_detail", sender: self)
         }
     }
+
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "quest_detail" {
             if let indexPath = tableView.indexPathForSelectedRow{

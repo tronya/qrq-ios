@@ -43,7 +43,7 @@ class QuestDetailController: UIViewController {
                     let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
                     
                     self.quest_detail.append(Quests_elem_scope(json: json as! NSDictionary))
-self.get_info()
+                    self.get_info()
                 }catch {
                     print("Error with Json: \(error)")
                     
@@ -58,23 +58,23 @@ self.get_info()
 
     
     }
+    
+    
+    @IBAction func buttonTapped(sender: AnyObject) {
+        self.performSegueWithIdentifier("gameSegue", sender: self)
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if segue.identifier == "gameSegue" {
+            let Destination = (segue.destinationViewController as! GameController)
+            Destination.detail_quest_id_indifer = self.quest_detail[0].quest_id!
+        }
+    }
     func get_info(){
         dispatch_async(dispatch_get_main_queue(), {
             self.detail_title_of_quest?.text = self.quest_detail[0].quest_title
             self.detail_description_of_quest?.text = self.quest_detail[0].quest_description
             self.detail_image_view?.setImageWithUrl(NSURL(string: (self.quest_detail[0].quest_photo)!)!,placeHolderImage: UIImage(named:"placeholder"))
         })
-    }
-gameSegue
-    func didTapMilk(data: MyCellData) {
-        performSegueWithIdentifier("mySegueId", sender: data)
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if segue.identifier == "mySegueId" {
-            let vc: MyDestinationViewController = segue.destinationViewController as MyDestinationViewController
-            vc.data = sender as? MyCellData
-        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

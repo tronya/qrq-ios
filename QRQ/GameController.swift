@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 import MapKit
 
-class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate {
+class GameController: UIViewController,CLLocationManagerDelegate,MKMapViewDelegate {
 
     
 
@@ -19,8 +19,9 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
     @IBOutlet weak var poi_count: UILabel!
     @IBOutlet weak var speed: UILabel!
     @IBOutlet weak var altitude: UILabel!
+    @IBOutlet weak var Debugger: UITextView!
     
-    
+    var detail_quest_id_indifer = Int()
     
     let locationManager = CLLocationManager()
     
@@ -33,8 +34,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
         
-
-        
+        self.Debugger.text = "Start\n"
+        print(detail_quest_id_indifer)
 
 
         
@@ -48,7 +49,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
             
             
             
-            let requestURL: NSURL = NSURL(string: "http://yourday.esy.es/quest.json")!
+            let requestURL: NSURL = NSURL(string: "http://yourday.esy.es/wp-json/wp/v2/posts/\(detail_quest_id_indifer)")!
+            print(requestURL)
             let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: requestURL)
             let session = NSURLSession.sharedSession()
             let task = session.dataTaskWithRequest(urlRequest) {
@@ -63,14 +65,34 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
                         
                         let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
                         
+                        self.quest_detail.append(Quests_elem_scope(json: json as! NSDictionary))
+                        //self.get_info()
+                    }catch {
+                        print("Error with Json: \(error)")
                         
-                        /*
-                            if let post = json["post"] as? [[String: AnyObject]] {
-                                print("post",post)
-                            }
-                        */
+                    }
+                    
+                }
+                
+            }
+            
+            task.resume()
+            /*
+            let requestURL: NSURL = NSURL(string: "http://yourday.esy.es/quest.json")!
+            let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: requestURL)
+            let session = NSURLSession.sharedSession()
+            let task = session.dataTaskWithRequest(urlRequest) {
+                (data, response, error) -> Void in
+                
+                let httpResponse = response as! NSHTTPURLResponse
+                let statusCode = httpResponse.statusCode
+                
+                if (statusCode == 200) {
+                    
+                    do{
                         
-                        
+                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
+                          
                         if let quest_points = json["quest_poi"] as? [[String: AnyObject]] {
                             
                             self.poi_count.text = String(quest_points.count)
@@ -101,7 +123,6 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
                         
                     }catch {
                         print("Error with Json: \(error)")
-                        
                     }
                     
                 }
@@ -109,6 +130,7 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
             }
             
             task.resume()
+ */
 
 
             /*
@@ -152,7 +174,8 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
         alertController.addAction(defaultAction)
         presentViewController(alertController, animated: true, completion: nil)
         print("Entering region \(region.identifier)")
-        
+
+        Debugger.text.appendContentsOf("Entering region \(region.identifier) \n")
     }
     func locationManager(manager: CLLocationManager, didExitRegion region: CLRegion) {
         
@@ -162,10 +185,12 @@ class ViewController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
         presentViewController(alertController, animated: true, completion: nil)
         print("Exiting region \(region.identifier)")
         
+        Debugger.text.appendContentsOf("Exiting region \(region.identifier) \n")
+        
     }
     func locationManager(manager: CLLocationManager, didStartMonitoringForRegion region: CLRegion) {
         print("Starting monitoring \(region.identifier)")
-        Geo_label.text = "didStartMonitoringForRegion"
+        Debugger.text.appendContentsOf("Starting monitoring \(region.identifier) \n")
     }
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         
