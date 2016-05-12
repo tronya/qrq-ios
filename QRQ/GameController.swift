@@ -25,7 +25,7 @@ class GameController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
     
     let locationManager = CLLocationManager()
     
-
+    var game_quest:[Quests_elem_scope] = []
     
 
     
@@ -50,7 +50,7 @@ class GameController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
             
             
             let requestURL: NSURL = NSURL(string: "http://yourday.esy.es/wp-json/wp/v2/posts/\(detail_quest_id_indifer)")!
-            print(requestURL)
+            //print(requestURL)
             let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: requestURL)
             let session = NSURLSession.sharedSession()
             let task = session.dataTaskWithRequest(urlRequest) {
@@ -65,8 +65,8 @@ class GameController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
                         
                         let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
                         
-                        self.quest_detail.append(Quests_elem_scope(json: json as! NSDictionary))
-                        //self.get_info()
+                        self.game_quest.append(Quests_elem_scope(json: json as! NSDictionary))
+                        self.addOnMapDots()
                     }catch {
                         print("Error with Json: \(error)")
                         
@@ -146,10 +146,29 @@ class GameController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
  
     }
     
-    func addOnMapDots(elemento: AnyObject){
-        print(elemento)
-
-
+    func addOnMapDots(){
+       
+        if let quest_points = self.game_quest[0].quest_points! as? [[String: AnyObject]] {
+            poi_count.text = String(quest_points.count)
+            if(quest_points.count >= 1){
+            for q_poi in quest_points {
+                
+                    let q_point_lat = q_poi["point"]!["lat"]
+                    let q_point_lon = q_poi["point"]!["lon"] 
+                
+                    print(q_point_lon)
+                }
+                //dispatch_async(dispatch_get_main_queue(), {
+                    
+                    //self.mapView.addOverlay(MKCircle(centerCoordinate: CLLocationCoordinate2D(latitude: q_point_lat, longitude:  q_point_lon), radius: 20))
+                    
+                    
+                    //let geoRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2D(latitude: q_point_lat, longitude:  q_point_lon), radius: 20, identifier: q_point_adress)
+                    //self.locationManager.startMonitoringForRegion(geoRegion)
+               // })
+                
+            }
+        }
     }
 
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
