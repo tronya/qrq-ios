@@ -15,6 +15,7 @@ class QuestTableViewCell: UITableViewCell {
     
     @IBOutlet weak var short_quest_title: UILabel!
     @IBOutlet weak var short_quest_description: UILabel!
+    @IBOutlet weak var short_quest_count_poi: UILabel!
     
     
     

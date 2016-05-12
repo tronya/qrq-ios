@@ -18,6 +18,7 @@
 		166017FE1CDB70110091CE59 /* UIImageView+AFNetworking copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166017FD1CDB70110091CE59 /* UIImageView+AFNetworking copy.swift */; };
 		167817821CDB42BC004C3193 /* Main_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167817811CDB42BC004C3193 /* Main_ViewController.swift */; };
 		167817851CDB48D3004C3193 /* Quests_elem_scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167817841CDB48D3004C3193 /* Quests_elem_scope.swift */; };
+		16F197F41CDC9F21008F6811 /* QuestDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F197F31CDC9F21008F6811 /* QuestDetailController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		166017FD1CDB70110091CE59 /* UIImageView+AFNetworking copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+AFNetworking copy.swift"; sourceTree = "<group>"; };
 		167817811CDB42BC004C3193 /* Main_ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Main_ViewController.swift; path = MainView/Main_ViewController.swift; sourceTree = "<group>"; };
 		167817841CDB48D3004C3193 /* Quests_elem_scope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quests_elem_scope.swift; sourceTree = "<group>"; };
+		16F197F31CDC9F21008F6811 /* QuestDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestDetailController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				167817811CDB42BC004C3193 /* Main_ViewController.swift */,
+				16F197F31CDC9F21008F6811 /* QuestDetailController.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				166017FE1CDB70110091CE59 /* UIImageView+AFNetworking copy.swift in Sources */,
 				16581B221CDC856F00AE4FF4 /* QuestTableViewCell.swift in Sources */,
 				1626B6BF1CD0E47B00E53DB2 /* AppDelegate.swift in Sources */,
+				16F197F41CDC9F21008F6811 /* QuestDetailController.swift in Sources */,
 				167817851CDB48D3004C3193 /* Quests_elem_scope.swift in Sources */,
 				167817821CDB42BC004C3193 /* Main_ViewController.swift in Sources */,
 			);

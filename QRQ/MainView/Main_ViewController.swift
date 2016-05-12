@@ -41,7 +41,6 @@ class Main_ViewController: UIViewController,UITableViewDataSource, UITableViewDe
                     
                     
                     if let quest_points = json as? [[String: AnyObject]] {
-                        print("count",quest_points.count)
                         for quest in quest_points {
                             self.quest_el_posts.append(Quests_elem_scope(json: quest))
                         }
@@ -83,6 +82,7 @@ class Main_ViewController: UIViewController,UITableViewDataSource, UITableViewDe
         cell.short_quest_description?.text = quest_el_posts[indexPath.row].quest_description
 
         
+        cell.short_quest_count_poi?.text = String("points \(quest_el_posts[indexPath.row].quest_points!.count)")
         cell.short_quest_image?.setImageWithUrl(NSURL(string: (self.quest_el_posts[indexPath.row].quest_photo)!)!,placeHolderImage: UIImage(named:"placeholder"))
         cell.short_quest_bg_image?.setImageWithUrl(NSURL(string: (self.quest_el_posts[indexPath.row].quest_photo)!)!,placeHolderImage: UIImage(named:"placeholder"))
         return cell
@@ -92,16 +92,23 @@ class Main_ViewController: UIViewController,UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        _ = tableView.indexPathForSelectedRow!
+        if let _ = tableView.cellForRowAtIndexPath(indexPath){
+            self.performSegueWithIdentifier("quest_detail", sender: self)
+        }
     }
-    */
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "quest_detail" {
+            if let indexPath = tableView.indexPathForSelectedRow{
+                print(indexPath)
+                let destenationController = segue.destinationViewController as! QuestDetailController
+                destenationController.detail_quest_id = self.quest_el_posts[indexPath.row].quest_id!
+            }
+        }
+        
+    }
     func do_table_refresh()
     {
         dispatch_async(dispatch_get_main_queue(), {
