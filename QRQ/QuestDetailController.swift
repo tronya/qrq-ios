@@ -67,6 +67,7 @@ class QuestDetailController: UIViewController {
         if segue.identifier == "gameSegue" {
             let Destination = (segue.destinationViewController as! GameController)
             Destination.detail_quest_id_indifer = self.quest_detail[0].quest_id!
+            Destination.game_quest_points = self.quest_detail[0].quest_points!
         }
     }
     func get_info(){

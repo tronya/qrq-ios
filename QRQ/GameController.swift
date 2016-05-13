@@ -22,8 +22,12 @@ class GameController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
     @IBOutlet weak var Debugger: UITextView!
     
     var detail_quest_id_indifer = Int()
+    var game_quest_points:NSArray?
+    
+    
     
     let locationManager = CLLocationManager()
+   
     
     var game_quest:[Quests_elem_scope] = []
     
@@ -31,147 +35,65 @@ class GameController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
         
         self.Debugger.text = "Start\n"
-        print(detail_quest_id_indifer)
-
-
         
         if CLLocationManager.locationServicesEnabled() {
+            
+
+            
             locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.distanceFilter = kCLDistanceFilterNone
             locationManager.startUpdatingLocation()
+            locationManager.requestAlwaysAuthorization()
+            
             mapView.showsUserLocation = true
             
-            self.mapView.delegate = self
+            mapView.delegate = self
             
             
-            
-            let requestURL: NSURL = NSURL(string: "http://yourday.esy.es/wp-json/wp/v2/posts/\(detail_quest_id_indifer)")!
-            //print(requestURL)
-            let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: requestURL)
-            let session = NSURLSession.sharedSession()
-            let task = session.dataTaskWithRequest(urlRequest) {
-                (data, response, error) -> Void in
-                
-                let httpResponse = response as! NSHTTPURLResponse
-                let statusCode = httpResponse.statusCode
-                
-                if (statusCode == 200) {
-                    
-                    do{
-                        
-                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
-                        
-                        self.game_quest.append(Quests_elem_scope(json: json as! NSDictionary))
-                        self.addOnMapDots()
-                    }catch {
-                        print("Error with Json: \(error)")
-                        
-                    }
-                    
-                }
-                
+            if(game_quest_points != nil){
+                addOnMapDots(game_quest_points!)
             }
-            
-            task.resume()
-            /*
-            let requestURL: NSURL = NSURL(string: "http://yourday.esy.es/quest.json")!
-            let urlRequest: NSMutableURLRequest = NSMutableURLRequest(URL: requestURL)
-            let session = NSURLSession.sharedSession()
-            let task = session.dataTaskWithRequest(urlRequest) {
-                (data, response, error) -> Void in
-                
-                let httpResponse = response as! NSHTTPURLResponse
-                let statusCode = httpResponse.statusCode
-                
-                if (statusCode == 200) {
-                    
-                    do{
-                        
-                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options:.AllowFragments)
-                          
-                        if let quest_points = json["quest_poi"] as? [[String: AnyObject]] {
-                            
-                            self.poi_count.text = String(quest_points.count)
-                            for q_poi in quest_points {
-                                
-                                if let q_massive = q_poi as? Dictionary{
-                                    
-                                    let q_name = String(q_massive["name"])
-                                    let q_lat = q_massive["location"]!["lat"] as! Double
-                                    let q_lng = q_massive["location"]!["lng"] as! Double
-                                    let q_id = q_massive["id"] as! Int
-                                    
-                                    print("\(q_lat)    \(q_lng)")
-                                    //self.addOnMapDots(q_massive)
-
-                                    dispatch_async(dispatch_get_main_queue(), {
-                                        
-                                        self.mapView.addOverlay(MKCircle(centerCoordinate: CLLocationCoordinate2D(latitude: q_lat, longitude:  q_lng), radius: 20))
-                                        
-                                        
-                                        let geoRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2D(latitude: q_lat, longitude:  q_lng), radius: 20, identifier: q_name)
-                                        self.locationManager.startMonitoringForRegion(geoRegion)
-                                    })
-                                }
-                            }
-                            
-                        }
-                        
-                    }catch {
-                        print("Error with Json: \(error)")
-                    }
-                    
-                }
-                
-            }
-            
-            task.resume()
- */
-
-
-            /*
-            let dod_2 = CLCircularRegion(center: CLLocationCoordinate2D(latitude: 48.68307007 , longitude: 26.53616667), radius: 10, identifier: "vyizd na dorogy")
-            locationManager.startMonitoringForRegion(dod_2)
-            
-            let dod_3 = CLCircularRegion(center: CLLocationCoordinate2D(latitude:48.6756638 , longitude: 26.55316651), radius: 10, identifier: "Olga")
-            locationManager.startMonitoringForRegion(dod_3)
-            */
-        
         }
         
  
     }
     
-    func addOnMapDots(){
-       
-        if let quest_points = self.game_quest[0].quest_points! as? [[String: AnyObject]] {
-            poi_count.text = String(quest_points.count)
-            if(quest_points.count >= 1){
+    func addOnMapDots(elemento: AnyObject){
+        print(elemento.count)
+        
+        if let quest_points = elemento as? [[String: AnyObject]] {
             for q_poi in quest_points {
                 
-                    let q_point_lat = q_poi["point"]!["lat"]
-                    let q_point_lon = q_poi["point"]!["lon"] 
+                var q_lat:Double = 0
+                var q_lng:Double = 0
+                let q_adress = q_poi["point"]!["address"] as? String
                 
-                    print(q_point_lon)
+                if let q_point_lat = Double((q_poi["point"]!["lat"] as? String)!) {
+                    print(q_point_lat)
+                    q_lat = q_point_lat
+                }else{
+                    print("error")
                 }
-                //dispatch_async(dispatch_get_main_queue(), {
-                    
-                    //self.mapView.addOverlay(MKCircle(centerCoordinate: CLLocationCoordinate2D(latitude: q_point_lat, longitude:  q_point_lon), radius: 20))
-                    
-                    
-                    //let geoRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2D(latitude: q_point_lat, longitude:  q_point_lon), radius: 20, identifier: q_point_adress)
-                    //self.locationManager.startMonitoringForRegion(geoRegion)
-               // })
+                if let q_point_lon = Double((q_poi["point"]!["lng"] as? String)!){
+                    print(q_point_lon)
+                    q_lng = q_point_lon
+                }else{
+                    print("error")
+                }
+                self.mapView.addOverlay(MKCircle(centerCoordinate: CLLocationCoordinate2D(latitude: q_lat, longitude: q_lng), radius: 20))
                 
+                
+                let geoRegion:CLCircularRegion = CLCircularRegion(center: CLLocationCoordinate2D(latitude: q_lat, longitude:  q_lng), radius: 20, identifier: q_adress!)
+               
+                locationManager.startMonitoringForRegion(geoRegion)
             }
         }
     }
 
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
         Geo_label.text = "\(locValue.latitude) \(locValue.longitude)"
         
