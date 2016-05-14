@@ -24,7 +24,7 @@ class QuestDetailController: UIViewController {
         print(detail_quest_id)
         
         
-        
+
         
         let requestURL: NSURL = NSURL(string: "http://yourday.esy.es/wp-json/wp/v2/posts/\(detail_quest_id)")!
         print(requestURL)
