@@ -219,7 +219,7 @@ class GameController: UIViewController,CLLocationManagerDelegate,MKMapViewDelega
         
         
 
-    }
+    } 
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         
         let myCircleView: MKCircleRenderer = MKCircleRenderer(overlay: overlay)
